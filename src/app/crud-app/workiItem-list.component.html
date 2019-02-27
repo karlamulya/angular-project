@@ -1,0 +1,90 @@
+<div class="card" *ngIf="displayList">
+    <h5>working List</h5>
+    <div class="heading" style="margin:10px;">
+        <div class="button" style="text-align:right">
+                <button type="button" class="btn btn-primary" (click)="onAdd()">Add</button>
+            </div>
+            <button type="button"  class="btn btn-success" (click)="exportAsXLSX()">upload to sheets</button>
+    </div>
+    <table id="example" class="display" style="width:100% ; border: 1px solid">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Work Items</th>
+                    <th>Due Date</th>
+                    <th>No of Resources</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let i=index;let workItem of workItems">
+                    <th>{{workItem.id}}</th>
+                    <th>{{workItem.name}}</th>
+                    <th>{{workItem.workItem}}</th>
+                    <th>{{workItem.dueDate}}</th>
+                    <th>{{workItem.noOfResource}}</th>
+                    <th>
+                            <a class="edit" (click)="onEdit(workItem)"><i style="color:green;cursor:pointer;margin-left: 3px;" class="fa fa-edit"></i></a>
+                            <a class="edit" (click)="onDelete(i)"><i  style="color:red;cursor:pointer;margin-left: 3px;" class="fa fa-trash"></i></a>
+                    </th>
+                </tr>
+        </table>
+   
+</div>
+<div class="card" style ="margin: 20px;" *ngIf="displayAdd">
+        <div class="card-heading">
+           <h5 *ngIf="onAddName" style="padding:5px;">Create work Item</h5>
+           <h5 *ngIf="onEditName" style="padding:5px;">Edit work Item</h5>
+        </div>
+        <div class="card-body">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                Id
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <input type="number"name="id" [(ngModel)]="workItemDTO.id" class="form-control"> 
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:10px">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    Name
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <input type="text" name="name" [(ngModel)]="workItemDTO.name" class="form-control"> 
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:10px">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        work Item
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <input type="text" name="wotkItem" [(ngModel)]="workItemDTO.workItem" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:10px">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            Due date
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <input type="date" class="form-control" name="dueDate" [(ngModel)]="workItemDTO.dueDate"> 
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:10px">
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                No of Resource
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <input type="text" class="form-control" name="noOfResource" [(ngModel)]="workItemDTO.noOfResource"> 
+                                            </div>
+                                        </div>
+                                        
+                       
+                    </div>
+                    <div class="button">
+                            <button type="button"  class="btn btn-success" (click)="onSave()">Save</button>
+                            <button type="button" style="margin-left:10px;" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
+                    </div>
+        </div>
+    </div>
+    
